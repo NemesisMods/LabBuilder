@@ -1,7 +1,7 @@
-import { newCharacter } from '@nemesismods/imperfectlab-core/package/imperfect'
+import { defaultLaser, newCharacter } from '@nemesismods/imperfectlab-core/package/imperfect'
 import { describe, expect, it } from 'vitest'
 import { engineVersion, findXboxImage, install } from '../src/recomp/install'
-import { unsupported } from '../src/recomp/target'
+import { limits, unsupported } from '../src/recomp/target'
 import { ascii, MemoryFolder, str } from './helpers'
 
 describe('Xbox Recomp', () => {
@@ -11,6 +11,13 @@ describe('Xbox Recomp', () => {
     c.baseMoves = { air_throw: true, throw_return: true }
     c.gameplay = { energy_regen: 0 }
     expect(unsupported(c)).toEqual(['air baton throw', 'baton return'])
+  })
+
+  it('notes how supported features differ on Xbox Recomp', () => {
+    const c = newCharacter()
+    expect(limits(c)).toEqual([])
+    c.zButton = { stealth: null, costume: null, stats: null, size: null, bullet: null, gun: null, laser: defaultLaser(), impersonate: null, requires: {} }
+    expect(limits(c)).toEqual(['the laser beam stops at breakable props without breaking them'])
   })
 
   it('finds the Xbox image and the engine version', async () => {

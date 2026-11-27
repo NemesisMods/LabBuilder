@@ -34,3 +34,13 @@ export const SUPPORTED: ReadonlySet<DolFeature> = new Set<DolFeature>([
 export function unsupported(c: Character): string[] {
   return dolFeatures(c).filter((f) => !SUPPORTED.has(f)).map((f) => LABELS[f])
 }
+
+// how a supported feature differs on Xbox Recomp
+const LIMITS: Partial<Record<DolFeature, string>> = {
+  laser: 'the laser beam stops at breakable props without breaking them',
+  impersonate_moves: "impersonating a different body type hasn't been tested in game",
+}
+
+export function limits(c: Character): string[] {
+  return dolFeatures(c).flatMap((f) => (SUPPORTED.has(f) && LIMITS[f] ? [LIMITS[f]] : []))
+}

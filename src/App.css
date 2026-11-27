@@ -37,3 +37,8 @@ button.primary { background: var(--accent); border-color: var(--accent); color: 
 .slot-head { display: flex; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap; align-items: center; }
 progress { width: 100%; margin-top: 0.6rem; }
 .log { white-space: pre-wrap; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 0.75rem; font-size: 0.85rem; }
+details.guide { margin-top: 0.8rem; border-top: 1px solid var(--line); padding-top: 0.6rem; }
+details.guide summary { cursor: pointer; font-weight: 600; }
+details.guide h4 { margin: 0.8rem 0 0.2rem; font-size: 0.95rem; }
+details.guide ol, details.guide ul { margin: 0.4rem 0; padding-left: 1.4rem; }
+details.guide li { margin: 0.3rem 0; }

@@ -1,7 +1,7 @@
 # Lab Builder
 
-Adds [ImperfectLab](https://nemesismods.com/lab) characters into Marvel Nemesis ports.<br />
-Runs at [nemesismods.com/builder](https://nemesismods.com/builder) and requires Chrome or Edge.
+Adds [ImperfectLab](https://nemesismods.com/#lab) characters into Marvel Nemesis ports.<br />
+Runs at [nemesismods.com/builder](https://nemesismods.com/#builder) and requires Chrome or Edge.
 
 Original code by sXe_Wolverine on Discord. Provided to EsotericEngineer to publish.
 
@@ -14,7 +14,9 @@ How it works:
 1. Each character is built with ImperfectLab's pipeline from the player's GameCube disc, without `main.dol` (`RECOMP` in `src/recomp/target.ts`).
 2. The build is converted to the Xbox formats.
 3. It's cut into self-contained pieces in `mods/characters`, which Turlin Engine joins into the game at every start.
-4. Features Turlin Engine does not have yet are listed per character and left out (`unsupported` in `src/recomp/target.ts`).
+4. Features Turlin Engine does not have yet are listed per character and left out (`unsupported` in `src/recomp/target.ts`). Supported features that work differently there are noted too (`limits`).
+
+Keep this app's built-in steps dropdown in line with TurlinEngine's `release/README.txt`, if anything changes there.
 
 Only the GameCube disc and the port's own Xbox image are read. Nothing is uploaded.
 

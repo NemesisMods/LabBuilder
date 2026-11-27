@@ -4,19 +4,20 @@ import { type Entry, forgetHandle, newId, permission, setHandle, setList } from 
 import { useEffect, useMemo, useState } from 'react'
 import { check, type PortCheck } from './recomp/check'
 import { ENGINE_NAME, ENGINE_RELEASES, ENGINE_VERSION } from './recomp/install'
-import { RECOMP, unsupported } from './recomp/target'
+import { limits, RECOMP, unsupported } from './recomp/target'
 import { build } from './ui/build'
 import { canPick, pickDisc, pickPort, readDisc, type RememberedDisc } from './ui/disc'
+import { TurlinGuide } from './ui/TurlinGuide'
 import { useHandle, useList } from './ui/useShared'
 
-interface Summary { name: string; detail: string; warnings: string[]; error: string | null }
+interface Summary { name: string; detail: string; warnings: string[]; limits: string[]; error: string | null }
 
 function summary(e: Entry): Summary {
   try {
     const c = load(e.bytes)
-    return { name: c.displayName, detail: `${label(c.base)} · ${c.internalName}`, warnings: unsupported(c), error: null }
+    return { name: c.displayName, detail: `${label(c.base)} · ${c.internalName}`, warnings: unsupported(c), limits: limits(c), error: null }
   } catch (err) {
-    return { name: e.name, detail: e.source, warnings: [], error: (err as Error).message }
+    return { name: e.name, detail: e.source, warnings: [], limits: [], error: (err as Error).message }
   }
 }
 
@@ -136,6 +137,7 @@ export default function App() {
             {port && access === 'granted' && <button onClick={() => void inspect(port, false)} disabled={!!busy}>Check again</button>}
             {port && <button onClick={() => void forgetHandle('recomp-port')} disabled={!!busy}>Unlink</button>}
           </div>
+          <TurlinGuide needed={info !== null && portOk && !engineOk} />
         </div>
 
         <div className="card">
@@ -162,6 +164,7 @@ export default function App() {
                   </div>
                   {r.error && <p className="bad">{r.error}</p>}
                   {r.warnings.length > 0 && <p className="warn">Left out (not on Xbox Recomp yet): {r.warnings.join(', ')}</p>}
+                  {r.limits.length > 0 && <p className="muted">On Xbox Recomp: {r.limits.join('; ')}.</p>}
                 </li>
               )
             })}
