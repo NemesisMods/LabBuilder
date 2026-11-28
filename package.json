@@ -11,6 +11,7 @@
     "test": "vitest run"
   },
   "dependencies": {
+    "@fontsource/teko": "^5.3.0",
     "@nemesismods/imperfectlab-core": "^1.61.0",
     "@nemesismods/workspace": "^0.1.0",
     "react": "^19.3.1",

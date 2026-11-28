@@ -1,0 +1,102 @@
+/* Colours from ImperfectLab's themes.css. */
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #272a31;
+  --card: #272a31;
+  --button: #2f333b;
+  --fg: #e4e6ea;
+  --muted: #9aa0aa;
+  --line: #41464f;
+  --accent: #d8b23a;
+  --accent2: #3b8fd9;
+  --on-accent: #1f2126;
+  --good: #66c37a;
+  --bad: #e5655c;
+  --warn: #e3b341;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #ffffff;
+  --card: #ffffff;
+  --button: #e8eaee;
+  --fg: #1f2328;
+  --muted: #5b636e;
+  --line: #c4c9d2;
+  --accent: #946b00;
+  --accent2: #0b6bcb;
+  --on-accent: #ffffff;
+  --good: #1a7f37;
+  --bad: #cf222e;
+  --warn: #9a6700;
+}
+
+:root[data-theme='nemesis'] {
+  color-scheme: dark;
+  --bg: #071a21;
+  --card: rgba(6, 30, 38, 0.72);
+  --button: #0d2a33;
+  --fg: #c9eef7;
+  --muted: #6fa0ad;
+  --line: color-mix(in srgb, #2b6f95 45%, transparent);
+  --accent: #c39a45;
+  --accent2: #8fe3f5;
+  --on-accent: #000000;
+  --good: #6fcf8a;
+  --bad: #e0574f;
+  --warn: #e8b84a;
+  --band: linear-gradient(90deg, rgba(120, 190, 205, 0.4), rgba(120, 190, 205, 0.12) 70%, transparent);
+  scrollbar-color: #2b6f95 transparent;
+
+  h1, h2, h3 {
+    font-family: Teko, Rajdhani, Bahnschrift, 'Arial Narrow', system-ui, sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  h1, h2 {
+    color: #08222b;
+    background: var(--band);
+    padding: 5px 12px 1px;
+
+    .muted { color: #08222b; }
+  }
+
+  .card, .log, button, .button, input, select { border-radius: 0; }
+  button, .button { color: var(--accent2); }
+  button.primary { color: var(--on-accent); }
+  & ::selection { background: color-mix(in srgb, var(--accent) 40%, transparent); }
+}
+
+:root[data-theme='nemesis-classic'] {
+  color-scheme: dark;
+  --bg: #0a1317;
+  --card: #0a1317;
+  --button: #112027;
+  --fg: #d3dfe0;
+  --muted: #7396a0;
+  --line: #1f3a43;
+  --accent: #3fdde4;
+  --accent2: #4aa3b0;
+  --on-accent: #050b0d;
+  --good: #6fcf8a;
+  --bad: #ef6b60;
+  --warn: #e8b84a;
+
+  h1, h2, h3 {
+    font-family: Teko, Rajdhani, Bahnschrift, 'Arial Narrow', system-ui, sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  h1, h2 { color: var(--accent); }
+  .card, .log, button, .button, input, select { border-radius: 2px; }
+  & ::selection { background: color-mix(in srgb, var(--accent) 35%, transparent); }
+}
+
+button:hover:not(:disabled), .button:hover:not(.disabled) { border-color: var(--accent2); }
+:root:is([data-theme='nemesis'], [data-theme='nemesis-classic']) :is(button:hover:not(:disabled), .button:hover:not(.disabled)) { border-color: var(--accent); color: var(--accent); }
+button.primary:hover:not(:disabled) { border-color: var(--accent); color: var(--on-accent); filter: brightness(1.1); }
